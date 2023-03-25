@@ -1,0 +1,99 @@
+@page
+@model SWP_Steel.Pages.Admin.Profile.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "Shared/_LayoutAdmin";
+}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Cập nhật nhân viên</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <img width="100%" id="preview-product" alt="user" src="~/admin/plugins/images/large/img1.jpg">
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Employee.EmployeeId"/>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.FullName" class="control-label">Họ tên</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.FullName" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.BirthDate" class="control-label">Ngày sinh</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.BirthDate" class="form-control px-2" value="@Model.Employee.BirthDate" asp-format="{0:dd-MM-yyyy}"/>
+                                    <span asp-validation-for="Employee.BirthDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Address" class="control-label">Địa chỉ</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.Address" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Gender" class="control-label">Giới tính</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select class="form-select" asp-for="Employee.Gender" aria-selected="@(Model.Employee.Gender ?? false)">
+                                        <option value="true">Nam</option>
+                                        <option value="false">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Phone" class="control-label">Số điện thoại</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.Phone" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Email" class="control-label">Email</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.Email" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <input type="hidden" asp-for="Employee.Role" class="form-control"/>
+                            <input type="hidden" asp-for="Employee.Title" class="form-control"/>
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12">
+                                    <input type="submit" value="Cập nhật" class="btn btn-primary"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

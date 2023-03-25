@@ -1,0 +1,20 @@
+﻿@page
+@model SWP_Steel.Pages.Client.Order.OrderSuccessModel
+@{
+}
+<div class="container my-5">
+    <h3>Order thành công! Thông tin về đơn hàng đã được gửi đến email của bạn ! </h3>
+    <div class="">
+        <form method="post">
+            <input class="btn btn-danger d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white" style="width: 250px;"
+                   type="submit" value="Thanh toán ngay" asp-page-handler="CreatePaymentUrl" />
+        </form>
+        <button class="back-to-detail px-3 py-2 mt-3 ms-3" style="width: 250px;" action="~/client/product/listproduct">
+            <p>Thanh toán khi nhận hàng ?</p>
+            <span>
+                <i class="fa-solid fa-arrow-left"></i>
+                <a class="text-decoration-none" href="/listproduct/1">TIẾP TỤC MUA SẮM</a>
+            </span>
+        </button>   
+    </div>
+</div>

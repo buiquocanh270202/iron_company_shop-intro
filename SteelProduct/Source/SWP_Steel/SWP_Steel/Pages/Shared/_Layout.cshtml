@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/slick/slick.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="header-top">
+                <div class="container">
+                    <nav class="navbar navbar-expand-xl">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="~/index">
+                                <img class="logo-img"
+                                     src="~/image/logo/8.png"
+                                     alt="" />
+                            </a>
+                            <button class="navbar-toggler"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent"
+                                    aria-controls="navbarSupportedContent"
+                                    aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        <div class="collapse navbar-collapse"
+                             id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link fw-bolder"
+                                       aria-current="page"
+                                       href="~/index">
+                                        TRANG CHỦ
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link fw-bolder" href="">GIỚI THIỆU</a>
+                                </li>
+
+                                @{
+                                    var db = new Swp391Context();
+                                    var categories = db.Categories.ToList();
+                                }
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link  dropdown-toggle" style="font-weight: 700;" href="~/client/product/listproduct?catId=1" data-bs-toggle="dropdown">SẢN PHẨM</a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var c in categories)
+                                        {
+                                            <li><a class="dropdown-item" href="/listproduct/@c.CategoryId/1">@c.CategoryName</a></li>
+
+                                        }
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link fw-bolder" href="~/client/news/newslist">TIN TỨC</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link fw-bolder" href="/contact">LIÊN HỆ</a>
+                                </li>
+                            </ul>
+                            <div class="">
+                                <div class="signin-option me-3 d-flex justify-content-between flex-xl-row flex-column">
+                                    @{
+                                        SWP_Steel.Models.Customer accSession = new SWP_Steel.Models.Customer();
+                                        if (Context.Session.GetString("AccSession") != null)
+                                        {
+                                            accSession = JsonSerializer.Deserialize<SWP_Steel.Models.Customer>(Context.Session.GetString("AccSession"));
+                                        }
+                                        @if (Context.Session.GetString("AccSession") == null || accSession.Status == false)
+                                        {
+
+                                            <a href="~/client/signin" class="text-decoration-none me-3"><span>Đăng nhập</span></a>
+                                            <a href="~/client/signup" class="text-decoration-none me-3"><span>Đăng ký</span></a>
+                                        }
+                                        else
+                                        {
+                                            <div class="logged-right-header d-flex">
+                                                <span class="hello-username">Hello, <strong>@accSession.ContactName</strong></span>
+                                                <li style="list-style-type:none;" class="nav-item dropdown">
+                                                    <a class="nav-link  dropdown-toggle mx-2" href="~/client/editprofile?accId=@accSession.CustomerId" data-bs-toggle="dropdown">Tài khoản</a>
+                                                    <ul class="dropdown-menu">
+
+                                                        <li><a class="dropdown-item" href="/editprofile/@accSession.CustomerId">Cập nhật thông tin</a></li>
+                                                        <li><a class="dropdown-item" href="/myorder/@accSession.CustomerId">Đơn hàng</a></li>
+                                                        <li><a class="dropdown-item" href="/updatepassword/@accSession.Email">Thay đổi mật khẩu</a></li>
+                                                        <li><a href="~/client/signin" class="dropdown-item text-decoration-none me-3"><span>Đăng xuất</span></a></li>
+                                                    </ul>
+                                                </li>
+                                                    
+                                            </div>
+                                        }
+                                        var CartSession = Context.Session.GetString("cart");
+                                        var Cart = new List<Item>();
+                                        if (CartSession != null)
+                                        {
+                                            Cart = JsonSerializer.Deserialize<List<Item>>(Context.Session.GetString("cart"));
+                                        }
+
+                                        <a href="/cart" class="text-decoration-none me-3">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>(@Cart.Count())</span>
+                                        </a>
+                                    }
+
+                                    <div class="header-top-right d-flex">
+                                        <div class="header-contact d-flex">
+                                            <i class="fa-solid fa-phone"></i>
+                                            <span>0981 567 024</span>
+                                        </div>
+                                        @*  <div class="header-search">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <div class="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="footer-item">
+                                <div class="footer-item-title">
+                                    <h5>THẾ GIỚI THÉP CN 01</h5>
+                                </div>
+                                <div class="footer-item-detail">
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>Địa chỉ: 244 Tô Ký, Thới Tam Thôn, Hóc Môn, TP.HCM</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-phone-volume"></i>
+                                        <p>Hotline: 0915.783.788</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-fax"></i>
+                                        <p>Điện thoại: (028) 225.31.486</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <p>Email: tgtgroup@thegioithepvn.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-item">
+                                <div class="footer-item-title">
+                                    <h5>THẾ GIỚI THÉP CN 02</h5>
+                                </div>
+                                <div class="footer-item-detail">
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>Địa chỉ: 244 Tô Ký, Thới Tam Thôn, Hóc Môn, TP.HCM</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-phone-volume"></i>
+                                        <p>Hotline: 0915.783.788</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-fax"></i>
+                                        <p>Điện thoại: (028) 225.31.486</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <p>Email: tgtgroup@thegioithepvn.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-item">
+                                <div class="footer-item-title">
+                                    <h5>THẾ GIỚI THÉP CN 03</h5>
+                                </div>
+                                <div class="footer-item-detail">
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p>Địa chỉ: 244 Tô Ký, Thới Tam Thôn, Hóc Môn, TP.HCM</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-phone-volume"></i>
+                                        <p>Hotline: 0915.783.788</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-fax"></i>
+                                        <p>Điện thoại: (028) 225.31.486</p>
+                                    </div>
+                                    <div class="footer-item-detail-item d-flex">
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <p>Email: tgtgroup@thegioithepvn.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <div class="container">
+                    <div class="footer-bottom-title">
+                        <p>
+                            TRỤ SỞ CHÍNH: 768 Nguyễn Thị Định, P.Thạnh Mỹ Lợi, TP.Thủ Đức,
+                            TP.HCM Hotline: 0915.783.788
+                        </p>
+                    </div>
+                    <div class="footer-bottom-content">
+                        <p class="mb-0">Copyright 2022 © <strong>THEGIOITHEPVN.COM</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/bootstrap.bundle.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // make it as accordion for smaller screens
+            if (window.innerWidth > 992) {
+
+                document.querySelectorAll('.navbar .nav-item').forEach(function (everyitem) {
+
+                    everyitem.addEventListener('mouseover', function (e) {
+
+                        let el_link = this.querySelector('a[data-bs-toggle]');
+
+                        if (el_link != null) {
+                            let nextEl = el_link.nextElementSibling;
+                            el_link.classList.add('show');
+                            nextEl.classList.add('show');
+                        }
+
+                    });
+                    everyitem.addEventListener('mouseleave', function (e) {
+                        let el_link = this.querySelector('a[data-bs-toggle]');
+
+                        if (el_link != null) {
+                            let nextEl = el_link.nextElementSibling;
+                            el_link.classList.remove('show');
+                            nextEl.classList.remove('show');
+                        }
+
+
+                    })
+                });
+
+            }
+            // end if innerWidth
+        });
+    </script>
+</body>
+</html>
+
+@*         </main> *@
+@*     </div> *@
+@* *@
+@*     <footer class="border-top footer text-muted"> *@
+@*         <div class="container"> *@
+@*             &copy; 2023 - SWP_Steel - <a asp-area="" asp-page="/Privacy">Privacy</a> *@
+@*         </div> *@
+@*     </footer> *@
+@* *@
+@*     <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+@*     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+@*     <script src="~/js/site.js" asp-append-version="true"></script> *@
+@* *@
+@*     @await RenderSectionAsync("Scripts", required: false) *@
+@* </body> *@
+@* </html> *@

@@ -1,0 +1,141 @@
+@page
+@model SWP_Steel.Pages.Admin.Employee.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "Shared/_LayoutAdmin";
+    var session = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("AdminSession")!);
+    if (session!.Role != 1)
+    {
+        HttpContext.Response.Redirect("/admin/index");
+    }
+}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Thông tin nhân viên</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex justify-content-end">
+                    <a asp-page="./Edit" asp-route-id="@Model.Employee.EmployeeId"
+                       class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                        Cập nhật
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Họ tên: @Html.DisplayFor(model => model.Employee.FullName)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Chức vụ: @Html.DisplayFor(model => model.Employee.Title)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Địa chỉ: @(Model.Employee.Address ?? "Chưa cập nhật")
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Ngày sinh: @(Model.Employee.BirthDate != null ? DateTime.Parse(Model.Employee.BirthDate.ToString()!).ToString("dd/MM/yyyy") : "Chưa cập nhật")
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Số điện thoại: @(Model.Employee.Phone ?? "Chưa cập nhật")
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Email: @Html.DisplayFor(model => model.Employee.Email)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Trạng thái: @(Model.Employee.Status != true ? "Vô hiệu hóa" : "Đang hoạt động")
+                        </span>
+                    </div>
+                    <form method="post">
+                        <input type="hidden" asp-for="Employee.EmployeeId"/>
+                        <input type="hidden" asp-for="Employee.Status" value="@ViewData["EmployeeStatus"]"/>
+                        <input type="submit" value="@(Model.Employee.Status == true ? "Vô hiệu hóa" : "Kích hoạt")" class="btn btn-danger text-white"/>
+                    </form>
+                </div>
+
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="white-box">
+                            <h3 class="box-title">Danh sách đơn hàng</h3>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Ngày yêu cầu</th>
+                                        <th>Ngày giao</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Nhân viên phụ trách</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    @* <tbody> *@
+                                    @* @foreach (var item in orders) *@
+                                    @* { *@
+                                    @*     <tr class="item__row" onclick="location.href='../Order/Details?id=@item.OrderId'"> *@
+                                    @*         <td> *@
+                                    @*             @Html.DisplayFor(modelItem => item.OrderId) *@
+                                    @*         </td> *@
+                                    @*         <td> *@
+                                    @*             @(DateTime.Parse(item.OrderDate.ToString()!).ToString("dd/MM/yyyy")) *@
+                                    @*         </td> *@
+                                    @*         <td> *@
+                                    @*             @(DateTime.Parse(item.RequiredDate.ToString()!).ToString("dd/MM/yyyy")) *@
+                                    @*         </td> *@
+                                    @*         <td> *@
+                                    @*             @(item.ShippedDate == null && item.EmployeeId != null ? "Đang giao hàng..." : *@
+                                    @*                 item.ShippedDate == null && item.EmployeeId == null ? "Đang xử lý..." : "Giao hàng thành công!") *@
+                                    @*         </td> *@
+                                    @*         <td> *@
+                                    @*             @(string.Format(new CultureInfo("vi-VN"), "{0:c}", item.Freight)) *@
+                                    @*         </td> *@
+                                    @*         <td> *@
+                                    @*             @Html.DisplayFor(modelItem => item.ShipAddress) *@
+                                    @*         </td> *@
+                                    @*         <td style="color: @(item.Employee == null ? "red" : "green")"> *@
+                                    @*             @(item.Employee == null ? "Chưa có" : item.Employee!.FullName) *@
+                                    @*         </td> *@
+                                    @*     </tr> *@
+                                    @* } *@
+                                    @* </tbody> *@
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

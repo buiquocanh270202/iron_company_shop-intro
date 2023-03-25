@@ -1,0 +1,143 @@
+@page
+@using System.Globalization
+@model SWP_Steel.Pages.Admin.Customer.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "Shared/_LayoutAdmin";
+    var orders = (List<Order>)ViewData["orders"]!;
+}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Thông tin khách hàng</h4>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex justify-content-end">
+                    <form method="post">
+                        <input type="hidden" asp-for="Customer.CustomerId"/>
+                        <input type="hidden" asp-for="Customer.Status" value="@ViewData["CustomerStatus"]"/>
+                        <input type="submit" value="@(Model.Customer.Status == true ? "Vô hiệu hóa" : "Kích hoạt")" class="btn btn-danger text-white"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="form-group mb-4">
+                        <span class="col-md-12 p-0">
+                            Tên công ty: @Html.DisplayFor(model => model.Customer.CompanyName)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Họ tên: @Html.DisplayFor(model => model.Customer.ContactTitle). @Html.DisplayFor(model => model.Customer.ContactName)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Địa chỉ: @Html.DisplayFor(model => model.Customer.Address)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Ngày tạo: @Html.DisplayFor(model => model.Customer.CreateDate)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Số điện thoại: @Html.DisplayFor(model => model.Customer.Phone)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Email: @Html.DisplayFor(model => model.Customer.Email)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Trạng thái: @(Model.Customer.Status != true ? "Vô hiệu hóa" : "Đang hoạt động")
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="white-box">
+                            <h3 class="box-title">Danh sách đơn hàng</h3>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ngày đặt</th>
+                                        <th>Ngày yêu cầu</th>
+                                        <th>Ngày giao</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Địa chỉ giao hàng</th>
+                                        <th>Nhân viên phụ trách</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var item in orders)
+                                    {
+                                        <tr class="item__row" onclick="location.href='../Order/Details?id=@item.OrderId'">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.OrderId)
+                                            </td>
+                                            <td>
+                                                @(DateTime.Parse(item.OrderDate.ToString()!).ToString("dd/MM/yyyy"))
+                                            </td>
+                                            <td>
+                                                @(DateTime.Parse(item.RequiredDate.ToString()!).ToString("dd/MM/yyyy"))
+                                            </td>
+                                            <td>
+                                                @(item.ShippedDate == null && item.EmployeeId != null ? "Đang giao hàng..." :
+                                                    item.ShippedDate == null && item.EmployeeId == null ? "Đang xử lý..." : "Giao hàng thành công!")
+                                            </td>
+                                            <td>
+                                                @(string.Format(new CultureInfo("vi-VN"), "{0:c}", item.Freight))
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ShipAddress)
+                                            </td>
+                                            <td style="color: @(item.Employee == null ? "red" : "green")">
+                                                @(item.Employee == null ? "Chưa có" : item.Employee!.FullName)
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @* <a onclick="return confirm('Are you sure you want to delete?')" *@
+                    @*    class="btn btn-danger d-md-block pull-right ms-3 waves-effect waves-light text-white col-2 mb-3"> *@
+                    @*     Xóa sản phẩm *@
+                    @* </a> *@
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

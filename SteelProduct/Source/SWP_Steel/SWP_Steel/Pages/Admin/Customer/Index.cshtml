@@ -1,0 +1,100 @@
+@page
+@model SWP_Steel.Pages.Admin.Customer.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "Shared/_LayoutAdmin";
+}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Khách hàng</h4>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="row">
+
+						<div class="col-md-8"> 
+						<p class="box-title">Danh sách khách hàng</p>
+
+
+						</div>
+						<div class="col-md-4">
+							
+							<form method="get" asp-page="./Index">
+							<label>Tìm Kiếm</label>
+							<input name="searchString" value="@ViewData["searchCustommer"]" />
+							<button type="submit" class="btn-tim">Tìm</button>
+						</form> </div>
+
+						
+					</div>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Công ty</th>
+                                <th>Họ tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.Customer)
+                            {
+                                <tr class="item__row" onclick="location.href='./Customer/Details?id=@item.CustomerId'">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CompanyName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ContactName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td class="col-email">
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td class="status" style="color: @(item.Status == true ? "green" : "red")">
+                                        @(item.Status == true ? "Đang hoạt động" : "Vô hiệu hóa")
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                        @{
+							if(ViewData["searchCustommer"]==null){
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+				generateURl = (int? p) => "/admin/Customer?p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+							else
+							{
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+					generateURl = (int? p) => "/admin/Customer?SearchString=" + ViewData["searchCustommer"].ToString()+ "&p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+						}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

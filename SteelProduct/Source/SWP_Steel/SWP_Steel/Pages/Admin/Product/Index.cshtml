@@ -1,0 +1,129 @@
+@page
+@using System.Globalization
+@model SWP_Steel.Pages.Admin.Product.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "Shared/_LayoutAdmin";
+}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                <h4 class="page-title">Sản phẩm</h4>
+            </div>
+            <div class="col-lg-10 col-sm-9 col-md-9 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li>
+                            <a href="#" class="fw-normal">Tổng quan</a>
+                        </li>
+                    </ol>
+                    <a href="~/admin/product/create"
+                       class="btn btn-danger d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white height-min">
+                        Thêm mới
+                    </a>
+                    <form method="post" enctype="multipart/form-data">                       
+                        <span style="color: red">@ViewData["msg"]</span>
+                        <div class="d-flex">
+                            <input type="file" class="btn btn-danger d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white" id="upload-file" asp-for="FormFile" style="display: none" />
+                            <input class="btn btn-danger d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white" type="submit" value="Import" asp-page-handler="ImportExcel" />
+                        </div>
+                    </form>
+                    <a class="btn btn-danger d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white height-min" asp-page-handler="ExportProduct">Export to excel</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                   
+                    <div class="row">
+
+						<div class="col-md-8"> 
+						<p class="box-title">Danh sách sản phẩm</p>
+
+
+						</div>
+						<div class="col-md-4">
+							
+							<form method="get" asp-page="./Index">
+							<label>Tìm Kiếm</label>
+							<input name="searchString" value="@ViewData["searchProduct"]" />
+							<button type="submit" class="btn-tim">Tìm</button>
+						</form> </div>
+
+						
+					</div>
+
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Phân loại</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.Product)
+                            {
+                                <tr class="item__row" onclick="location.href='./Product/Edit?id=@item.ProductId'">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductId)
+                                    </td>
+                                    <td class="col-name">
+                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                    </td>
+                                    <td>
+                                        @(string.Format(new CultureInfo("vi-VN"), "{0:c}", item.UnitPrice))
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UnitsInStock)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category!.CategoryName)
+                                    </td>
+                                    <td style="color: @(item.Status == true ? "green" : "red")">
+                                        @(item.Status == true ? "Đang hiển thị" : "Đã ẩn")
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                        
+						@{
+							if(ViewData["searchProduct"]==null){
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+				generateURl = (int? p) => "/admin/Product?p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+							else
+							{
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+					generateURl = (int? p) => "/admin/Product?SearchString=" + ViewData["searchProduct"].ToString()+ "&p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+						}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

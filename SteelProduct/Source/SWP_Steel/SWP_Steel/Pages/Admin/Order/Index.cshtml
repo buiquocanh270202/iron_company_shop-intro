@@ -1,0 +1,140 @@
+@page
+@using System.Globalization
+@model SWP_Steel.Pages.Admin.Order.IndexModel
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "Shared/_LayoutAdmin";
+}
+
+<div class="page-wrapper">
+	<div class="page-breadcrumb bg-white">
+		<div class="d-flex justify-content-between">
+			<div class="">
+				<h4 class="page-title">Đơn hàng</h4>
+			</div>
+			<div>
+				<a class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"
+				   asp-page-handler="ExportOrder">Export to excel</a>
+			</div>
+
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="row">
+
+						<div class="col-md-6">
+							<p class="box-title">Danh sách đơn hàng</p>
+
+
+						</div>
+						<div class="col-md-6">
+							<form method="get" asp-page="./Index">
+								@if (@ViewData["startDate"] !=null || @ViewData["endDate"]!=null)
+								{
+									<label for="startDate">Từ ngày:</label>
+								<input type="date" id="startDate" name="StartDate" value="@ViewData["startDate"]" />
+
+
+								<label for="endDate">Đến ngày:</label>
+								<input type="date" id="endDate" name="EndDate" value="@ViewData["endDate"]"/>
+								}else{
+									<label for="startDate">Từ ngày:</label>
+								<input type="date" id="startDate" name="StartDate"  />
+
+
+								<label for="endDate">Đến ngày:</label>
+								<input type="date" id="endDate" name="EndDate" />
+								}
+
+								<button type="submit" class="btn-tim">Tìm</button>
+							</form>
+						</div>
+					</div>
+
+
+					<div class="table-responsive">
+						<table class="table text-nowrap">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Ngày đặt</th>
+									<th>Ngày yêu cầu</th>
+									<th>Ngày giao</th>
+									<th>Tổng tiền</th>
+									<th>Địa chỉ giao hàng</th>
+									<th>Khách hàng</th>
+									<th>Nhân viên phụ trách</th>
+									<th>Trạng thái</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model.Order)
+								{
+									<tr class="item__row" onclick="location.href='./Order/Details?id=@item.OrderId'">
+										<td>
+											@Html.DisplayFor(modelItem => item.OrderId)
+										</td>
+										<td>
+											@(DateTime.Parse(item.OrderDate.ToString()!).ToString("dd/MM/yyyy"))
+										</td>
+										<td>
+											@(DateTime.Parse(item.RequiredDate.ToString()!).ToString("dd/MM/yyyy"))
+										</td>
+										<td>
+											@(item.ShippedDate == null ? "Không xác định" :  DateTime.Parse(item.ShippedDate.ToString()!).ToString("dd/MM/yyyy"))
+										</td>
+										<td>
+											@(string.Format(new CultureInfo("vi-VN"), "{0:c}", item.Freight))
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.ShipAddress)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Customer!.ContactTitle). @Html.DisplayFor(modelItem => item.Customer!.ContactName)
+										</td>
+										<td style="color: @(item.Employee == null ? "red" : "green")">
+											@(item.Employee == null ? "Chưa có" : item.Employee!.FullName)
+										</td>
+										<td>
+											@(item.ShippedDate == null && item.EmployeeId != null ? "Đang giao hàng..." :
+										item.ShippedDate == null && item.EmployeeId == null ? "Đang xử lý..." : "Giao hàng thành công!")
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+
+						@{
+							if(@ViewData["startDate"] !=null || @ViewData["endDate"]!=null){
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+					generateURl = (int? p) => "/admin/Order?StartDate=" + ViewData["startDate"]+ "&endDate=" + ViewData["endDate"] + "&p=" + p
+
+				
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+							else
+							{
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+				generateURl = (int? p) => "/admin/Order?p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

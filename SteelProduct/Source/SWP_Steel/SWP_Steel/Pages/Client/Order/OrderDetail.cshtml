@@ -1,0 +1,121 @@
+﻿@page  "/orderdetail/{oId}"
+@model SWP_Steel.Pages.Client.Order.OrderDetailModel
+@{
+}
+@{
+    var order = (Order)ViewData["Order"];
+    this.Request.RouteValues["oId"] = order.OrderId;
+
+    Swp391Context dBContext = new Swp391Context();
+    SWP_Steel.Models.Customer accSession = new SWP_Steel.Models.Customer();
+    if (HttpContext.Session.GetString("AccSession") != null)
+    {
+        accSession = JsonSerializer.Deserialize<SWP_Steel.Models.Customer>(HttpContext.Session.GetString("AccSession"));
+    }
+  
+}
+
+<div class="content">
+    <div class="container">
+        <div class="row order-row">
+            <div class="col-3 order-sidebar">
+                <p class="my-3 mx-2">Welcome, @accSession.ContactName</p>
+                <hr>
+                <h5 class="order-sidebar-title my-3 mx-2">Quản lý tài khoản</h5>
+                <hr>
+                <a href="/editprofile/@accSession.CustomerId" class="text-decoration-none">  <h5 class="d-block my-3 mx-2">Thông tin cá nhân</h5></a>
+                <a href="/myorder/@accSession.CustomerId" class="text-decoration-none"> <h5 class="order-sidebar-title my-3 mx-2">Đơn hàng của tôi</h5></a>
+                <hr>
+              
+            </div>
+            <div class="col-9 order-content">
+                <div class="order-content-header p-2 mb-3">
+                    <span class="">Thông tin đơn hàng</span>
+                </div>
+                <div class="order-content-list">
+
+                    <div class="order-content-item">
+                        <div class="order-content-item-header d-flex justify-content-between p-2">
+                            <div class="order-content-item-left">
+                                <span class="d-block">Ngày đặt hàng: @order.OrderDate</span>
+                                <span class="d-block">Địa chỉ: @order.ShipAddress</span>
+                                <span class="d-block">Đơn hàng: @order.OrderId</span>
+                                @if (order.PaymentStatus == true)
+                                {
+                                    <span class="d-block">Trạng thái: </span>  <span class="order-status order-status-completed">Đã thanh toán</span>
+                                }
+                                @if (order.PaymentStatus == false || !order.PaymentStatus.HasValue)
+                                {
+                                    <span class="">Trạng thái: </span>   <span class="order-status order-status-pending">Chưa thanh toán</span>
+                                }
+                            </div>
+                            @if (order.ShippedDate != null)
+                            {
+                                <div class="order-content-item-right">
+                                    <span class="order-status order-status-completed">Đã giao</span><br/>
+                                    <span class="order-status order-status-completed">@order.ShippedDate</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="order-content-item-right">
+                                    <span class="order-status order-status-pending">Đang giao</span>
+                                </div>
+                            }
+                           
+                        </div>
+                        @{
+                            var productByOrder = dBContext.OrderDetails.Where(p => p.OrderId == order.OrderId).
+                            Select(p => new
+                            {
+                                pID = p.ProductId,
+                                ProductName = p.Product.ProductName,
+                                Price = p.UnitPrice,
+                                Quantity = p.Quantity,
+                                Image = p.Product.Image
+
+                            }).ToList();
+                            decimal total = 0;
+                            foreach (var o in productByOrder)
+                            {
+                                total += o.Quantity * o.Price;
+                                <div class="order-content-item-product row m-2">
+                                    <div class="col-8 d-flex">
+                                        <img src="~/image/index-img/@o.Image" alt="">
+                                        <p class="mx-2">@o.ProductName</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p>Số lượng: @o.Quantity</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p class="float-end">Giá: @String.Format("{0:#,##0}", o.Price) VNĐ</p>
+                                    </div>
+                                </div>
+                            }
+
+
+                        }
+
+                        <div class="order-content-item-footer d-flex justify-content-between">
+                            <div></div>
+
+                            <div>
+                                <p>Tổng: @String.Format("{0:#,##0}", total) VNĐ</p>
+                                @if (!order.PaymentStatus.HasValue || order.PaymentStatus == false)
+                                {
+                                    <form method="post">
+                                        <input class="btn btn-danger d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white"
+                                           type="submit" value="Thanh toán ngay" asp-page-handler="CreatePaymentUrl" />
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

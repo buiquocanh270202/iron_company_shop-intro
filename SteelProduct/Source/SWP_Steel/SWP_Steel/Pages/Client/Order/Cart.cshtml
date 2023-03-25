@@ -1,0 +1,180 @@
+﻿@page "/cart"
+@model SWP_Steel.Pages.Client.Order.CartModel
+@{
+}
+
+<div class="content">
+    <div class="container">
+        <div class="cart-breadcrump mt-5 mb-3 d-flex">
+            <div class="cart-breadcrump-icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="cart-breadcrump-step d-flex">
+                <div class="cart-breadcrump-number rounded-circle">
+                    <span>1</span>
+                </div>
+                <div class="cart-breadcrump-title">
+                    <span>GIỎ HÀNG</span>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+        <div class="cart-update d-flex">
+            <i class="fa-solid fa-check"></i>
+            <span>Giỏ hàng đã được cập nhật.</span>
+        </div>
+        <div class="row mb-5">
+            <div class="cart-detail col-md-7">
+                @if (Model.Products != null)
+                {
+                <table class="add-border-bottom py-3">
+                    <tr>
+                        <th class="text-center">SẢN PHẨM</th>
+                        <th class="text-center">GIÁ</th>
+                        <th class="text-center">SỐ LƯỢNG</th>
+                        <th class="text-center">TẠM TÍNH</th>
+                    </tr>
+                   
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="cart-item d-flex me-3">
+                                        <div class="cart-item-button">
+                                            <button class="cart-delete-btn rounded-circle">
+                                                <a class="text-decoration-none" onclick="return confirm('Are you sure you want to delete this?')" asp-page="cart" asp-page-handler="delete" asp-route-id="@item.Product.ProductId">x</a>
+                                            </button>
+                                        </div>
+
+                                        <div class="cart-item-img">
+                                            <img src="~/image/index-img/@item.Product.Image" alt="">
+                                        </div>
+                                        <div class="cart-item-name ms-3">
+                                            <a class="text-decoration-none cart-product-name" href="/detail/@item.Product.ProductId">@item.Product.ProductName</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="me-3">@String.Format("{0:#,##0}", item.Product.UnitPrice) VNĐ</span>
+                                </td>
+                                <td class="cart-input-number">
+                                    <a class="text-decoration-none" asp-page="cart" asp-page-handler="minus" asp-route-id="@item.Product.ProductId">-</a>
+                                    <input type="text" value="@item.Quantity" disabled />
+                                    <a class="text-decoration-none" asp-page="cart" asp-page-handler="add" asp-route-id="@item.Product.ProductId">+</a>
+                                </td>
+                                <td>
+                                    <span>@String.Format("{0:#,##0}", item.Quantity * item.Product.UnitPrice) VNĐ</span>
+                                </td>
+                            </tr>
+                        }
+                        </table>
+                    }
+                    <button class="back-to-detail px-3 py-2 mt-3" action="~/client/product/listproduct">
+                    <span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <a class="text-decoration-none" href="/listproduct/1">TIẾP TỤC XEM SẢN PHẨM</a>
+                    </span>
+                </button>
+            </div>
+            <div class="cart-detail-right col-md-5">
+                <div class="cart-detail-right-title">
+                    <span>CỘNG GIỎ HÀNG</span>
+                </div>
+                <div class="cart-detail-fee">
+                    <div class="price-and-fee add-border-bottom d-flex justify-content-between py-2">
+                        <span>Tổng đơn hàng : </span>
+                        <span>@String.Format("{0:#,##0}", @Model.Total) VNĐ</span>
+                    </div>
+                   @if (Model.Products != null)
+                {
+                    <form method="post">
+                    <div>
+                        <span class="d-block">Thông tin khách hàng</span>
+                         @if (HttpContext.Session.GetString("AccSession") == null)
+                        {
+                            <div class="cart-form">
+                                <input type="hidden" asp-for="Customer.CustomerId" value="123" />
+                                <label for="username" class="form-text">Tên công ty:</label><br>
+                                <input class="form-control" type="text" asp-for="Customer.CompanyName" placeholder="Company name" /><br />
+                                <span asp-validation-for="Customer.CompanyName" class="msg-error"></span>
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Họ tên khách hàng:</label><br>
+                                <input class="form-control" type="text" asp-for="Customer.ContactName" placeholder="Contact name" /><br />
+                                <span asp-validation-for="Customer.ContactName" class="msg-error"></span>
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Chức vụ:</label><br>
+                                <input class="form-control" type="text" asp-for="Customer.ContactTitle" placeholder="ContactTitle" /><br />
+                                <span asp-validation-for="Customer.ContactTitle" class="msg-error"></span>
+                            </div>
+                              <div class="cart-form">
+                                <label for="username" class="form-text">Email:</label><br>
+                                <input class="form-control" type="text" asp-for="Customer.Email" placeholder="Email" /><br />
+                                <span asp-validation-for="Customer.Email" class="msg-error"></span>
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Số điện thoại:</label><br>
+                                <input class="form-control" type="text" asp-for="Customer.Phone" placeholder="Phone" /><br />
+                                <span asp-validation-for="Customer.Phone" class="msg-error"></span>
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Địa chỉ:</label><br>
+                                    <input class="form-control" type="text" name="address" asp-for="Customer.Address" placeholder="Address" /><br />
+                                <span asp-validation-for="Customer.Address" class="msg-error"></span>
+                            </div>
+                            
+                        }else{
+                            SWP_Steel.Models.Customer customer = new SWP_Steel.Models.Customer();
+
+                            customer = JsonSerializer.Deserialize<SWP_Steel.Models.Customer>(HttpContext.Session.GetString("AccSession"));
+                            <div class="cart-form">
+                                <input type="hidden" asp-for="Customer.CustomerId" value="@customer.CustomerId" />
+                                <label for="username" class="form-text">Tên công ty:</label><br>
+                                <input type="text" asp-for="Customer.CompanyName" placeholder="Company name" value="@customer.CompanyName" disabled /><br />
+                               
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Họ tên khách hàng:</label><br>
+                            <input type="text" asp-for="Customer.ContactName" placeholder="Contact name" value="@customer.ContactName" disabled /><br />
+                          
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Email:</label><br>
+                                <input type="text" asp-for="Customer.Email" placeholder="Email" value="@customer.Email" disabled /><br />
+                              
+                            </div>
+                            <div class="cart-form">
+                               <label for="username" class="form-text">Số điện thoại:</label><br>
+                            <input type="text" asp-for="Customer.Phone" placeholder="Phone" value="@customer.Phone" disabled /><br />
+                          
+                            </div>
+                            <div class="cart-form">
+                                <label for="username" class="form-text">Địa chỉ:</label><br>
+                            <input type="text" asp-for="Customer.Address" placeholder="Address" name="address" value="@customer.Address" /><br />
+                           
+                            </div>
+                            
+
+
+                        }
+                        <div class="mt-3">
+                            <label>Ngày Nhận Hàng : </label>
+                            <input type="date" asp-for="Order.RequiredDate" id="RequiredDateForSession" />
+                            <span class="msg-error" asp-validation-for="Order.RequiredDate"></span><br />
+                            <span id="msg-error-date2" style="color: red">@Model.ValidateRequiredDate</span>
+                        </div>
+                        
+                            <input type="button" class="payment-btn py-2 my-4" value="ĐẶT HÀNG" onclick="this.form.submit()"  />
+                            
+                        
+                      
+                    </div>
+                    </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

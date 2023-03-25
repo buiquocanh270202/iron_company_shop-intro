@@ -1,0 +1,23 @@
+﻿@page
+@model SWP_Steel.Pages.Client.Order.PaymentSuccessModel
+@{
+
+}
+<div class="container">
+    <h2>@ViewData["msg"]</h2>
+    <button class="back-to-detail px-3 py-2 mt-3" action="~/client/product/listproduct">
+        <span>
+            <i class="fa-solid fa-arrow-left"></i>
+            <a class="text-decoration-none" href="/orderdetail/@ViewData["oId"]">XEM ĐƠN HÀNG</a>
+        </span>
+    </button>
+    <button class="back-to-detail px-3 py-2 mt-3" action="~/client/product/listproduct">
+        <span>
+            <i class="fa-solid fa-arrow-left"></i>
+            <a class="text-decoration-none" href="/listproduct/1">TIẾP TỤC MUA SẮM</a>
+        </span>
+    </button>
+    
+
+    
+</div>

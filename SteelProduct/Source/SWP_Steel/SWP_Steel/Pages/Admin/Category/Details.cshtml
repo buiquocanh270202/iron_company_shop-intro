@@ -1,0 +1,118 @@
+@page
+@using System.Globalization
+@model SWP_Steel.Pages.Admin.Category.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "Shared/_LayoutAdmin";
+    var products = (List<Product>)ViewData["products"]!;
+}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Phân loại sản phẩm</h4>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li>
+                            <a href="#" class="fw-normal">Tổng quan</a>
+                        </li>
+                    </ol>
+                    <a asp-page="./Edit" asp-route-id="@Model.Category.CategoryId"
+                       class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                        Cập nhật
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="form-group mb-4">
+                        <span class="col-md-12 p-0">
+                            Phân loại: @Html.DisplayFor(model => model.Category.CategoryName)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Mô tả: @Html.DisplayFor(model => model.Category.Description)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Tình trạng: @(Model.Category.Status != true ? "Ẩn" : "Hiển thị")
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="white-box">
+                            <h3 class="box-title">Danh sách sản phẩm</h3>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var item in products)
+                                    {
+                                        <tr class="item__row" onclick="location.href='../Product/Details?id=@item.ProductId'">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProductId)
+                                            </td>
+                                            <td class="col-name">
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </td>
+                                            <td>
+                                                @(string.Format(new CultureInfo("vi-VN"), "{0:c}", item.UnitPrice))
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UnitsInStock)
+                                            </td>
+                                            @* <td> *@
+                                            @*     <a asp-page="./Edit" asp-route-id="@item.ProductId">Cập nhật</a> | *@
+                                            @*     <a asp-page="./Details" asp-route-id="@item.ProductId">Thông tin</a> | *@
+                                            @*     <a asp-page="./Delete" asp-route-id="@item.ProductId">Xóa</a> *@
+                                            @* </td> *@
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @* <a onclick="return confirm('Are you sure you want to delete?')" *@
+                    @*    class="btn btn-danger d-md-block pull-right ms-3 waves-effect waves-light text-white col-2 mb-3"> *@
+                    @*     Xóa sản phẩm *@
+                    @* </a> *@
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

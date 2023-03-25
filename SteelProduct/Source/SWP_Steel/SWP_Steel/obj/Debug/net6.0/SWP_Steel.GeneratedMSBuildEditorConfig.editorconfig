@@ -1,0 +1,233 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SWP_Steel
+build_property.RootNamespace = SWP_Steel
+build_property.ProjectDir = C:\Users\lannt\Desktop\New folder\swp391-se1637-group4\Source\SWP_Steel\SWP_Steel\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\lannt\Desktop\New folder\swp391-se1637-group4\Source\SWP_Steel\SWP_Steel
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWJvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Category/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Customer/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Customer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Employee/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Employee/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Employee/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Employee/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRW1wbG95ZWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/News/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTmV3c1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/News/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTmV3c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/News/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTmV3c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/News/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTmV3c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Order/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Order/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Product/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Product/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Product/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZmlsZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Admin/Profile/Password.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZmlsZVxQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XENoYW5nZVBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XEVkaXRQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Forgot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XEZvcmdvdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/News/NewsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE5ld3NcTmV3c0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/News/NewsSingle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE5ld3NcTmV3c1NpbmdsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Order/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE9yZGVyXENhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Order/MyOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE9yZGVyXE15T3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Order/OrderDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE9yZGVyXE9yZGVyRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Order/OrderSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE9yZGVyXE9yZGVyU3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Order/PaymentSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE9yZGVyXFBheW1lbnRTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Order/PrintOrderToPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XE9yZGVyXFByaW50T3JkZXJUb1BERi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Product/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFByb2R1Y3RcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/Product/ListProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFByb2R1Y3RcTGlzdFByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFNpZ25Jbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFNpZ25VcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Client/UpdatePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFVwZGF0ZVBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Shared/Components/MessagePage/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXENvbXBvbmVudHNcTWVzc2FnZVBhZ2VcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Shared/_PagingXTL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9QYWdpbmdYVEwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Shared/_ViewNews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WaWV3TmV3cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lannt/Desktop/New folder/swp391-se1637-group4/Source/SWP_Steel/SWP_Steel/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-h268svmf2v

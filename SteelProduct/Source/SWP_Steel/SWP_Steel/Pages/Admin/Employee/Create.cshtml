@@ -1,0 +1,96 @@
+@page
+@model SWP_Steel.Pages.Admin.Employee.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "Shared/_LayoutAdmin";
+    var session = JsonSerializer.Deserialize<Employee>(HttpContext.Session.GetString("AdminSession")!);
+    if (session!.Role != 1)
+    {
+        HttpContext.Response.Redirect("/admin/index");
+    }
+}
+
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Thêm nhân viên</h4>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <img id="preview-product" width="100%" alt="user" src="~/image/index-img/avatar-default.jpg">
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.FullName" class="control-label"></label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.FullName" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Title" class="control-label"></label>
+                                <div class="col-sm-12 border-bottom">
+                                    <input asp-for="Employee.Title" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Gender" class="control-label"></label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select asp-for="Employee.Gender" class="form-control px-2">
+                                        <option selected hidden disabled value="null">Giới tính</option>
+                                        <option value="true">Nam</option>
+                                        <option value="false">Nữ</option>
+                                    </select>
+                                    <span asp-validation-for="Employee.Gender" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Email" class="control-label"></label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Employee.Email" aria-required="true" class="form-control px-2"/>
+                                    <span asp-validation-for="Employee.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label asp-for="Employee.Role" class="control-label"></label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select asp-for="Employee.Role" class="form-control px-2">
+                                        <option value="1">Quản trị viên</option>
+                                        <option value="2" selected>Nhân viên</option>
+                                    </select>
+                                    <span asp-validation-for="Employee.Role" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12">
+                                    <input type="submit" value="Thêm mới" class="btn btn-primary"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

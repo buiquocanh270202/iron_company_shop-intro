@@ -1,0 +1,235 @@
+﻿@page
+@model IndexModel
+@{
+    var HotProduts = Model.ProductList.OrderBy(p => p.ReorderLevel).Take(4);
+    var NewProduts = Model.ProductList.OrderByDescending(p => p.ProductId).Take(4);
+    List<Category> categories = (List<Category>)ViewData["catergories"];
+}
+
+
+<div class="header-slider">
+    <div class="slider-item">
+        <img src="~/image/index-img/slider1.jpg" alt=""/>
+    </div>
+    <div class="slider-item">
+        <img src="~/image/index-img/slider2.jpg" alt=""/>
+    </div>
+    <div class="slider-item">
+        <img src="~/image/index-img/slider3.jpg" alt=""/>
+    </div>
+    <div class="slider-item">
+        <img src="~/image/index-img/slider4.jpg" alt=""/>
+    </div>
+</div>
+<div class="content">
+<div class="container">
+<div class="featured-box-list row">
+    <div class="col-12 col-md-6 col-lg-3">
+        <div
+            class="featured-box-item d-flex rounded p-3 mt-5"
+            style="background-color: #572169">
+            <div class="featured-box-img me-2">
+                <img src="~/image/index-img/certificate.png" alt=""/>
+            </div>
+            <div class="featured-box-text" style="color: #ffae00">
+                <h5 class="featured-box-title">SẢN PHẨM ĐA DẠNG</h5>
+                <p class="featured-box-detail">Nhiều thương hiệu uy tín</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div
+            class="featured-box-item d-flex rounded p-3 mt-5"
+            style="background-color: #017cc2">
+            <div class="featured-box-img me-2">
+                <img src="~/image/index-img/best-price.png" alt=""/>
+            </div>
+            <div class="featured-box-text" style="color: #fff">
+                <h5 class="featured-box-title">GIÁ CẢ HỢP LÝ</h5>
+                <p class="featured-box-detail">Giá đi đôi chất lượng</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div
+            class="featured-box-item d-flex rounded p-3 mt-5"
+            style="background-color: #572169">
+            <div class="featured-box-img me-2">
+                <img src="~/image/index-img/shipped.png" alt=""/>
+            </div>
+            <div class="featured-box-text" style="color: #ffae00">
+                <h5 class="featured-box-title">DỊCH VỤ GIAO HÀNG</h5>
+                <p class="featured-box-detail">Giao đúng & Giao đủ</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3">
+        <div
+            class="featured-box-item d-flex rounded p-3 mt-5"
+            style="background-color: #017cc2">
+            <div class="featured-box-img me-2">
+                <img src="~/image/index-img/smartphone.png" alt=""/>
+            </div>
+            <div class="featured-box-text" style="color: #fff">
+                <h5 class="featured-box-title">ĐẶT HÀNG DỄ DÀNG</h5>
+                <p class="featured-box-detail">Hotline hỗ trợ 24/7/365</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index-introduce row">
+    <div class="index-introduce-left col-md-6 col-12">
+        <h5>GIỚI THIỆU TẬP ĐOÀN THẾ GIỚI THÉP – TGT GROUP</h5>
+        <p>
+            Với hơn 10 năm kinh nghiệm, Tập Đoàn Thế Giới Thép là nơi cung
+            cấp sắt thép xây dựng hàng đầu Việt Nam, là nơi uy tín tuyệt
+            đối, đạt được sự tin yêu của khách hàng. Tập Đoàn Thế Giới Thép
+            chuyên cung cấp tất cả các loại sắt thép xây dựng chất lượng cao
+            từ các thương hiệu uy tín tại Việt nam như: Thép Việt Nhật (Vina
+            kyoei), Pomina, Hòa phát, Miền Nam,Việt Mỹ, Đông Á. Ngoài ra,
+            Tập Đoàn Thế Giới Thép cung cấp thép hộp, thép hình I/ U/V/ H,
+            tôn, xà gồ C, Z, La….của các thương hiệu hàng đầu Việt Nam: Hoa
+            Sen, Hòa Phát, Nam Kim, Vinaone, TVP, Nguyễn Minh… với đầy đủ
+            kích cỡ, chủng loại cho các công trình lớn, nhỏ trong và ngoài
+            nước.
+        </p>
+    </div>
+    <div class="index-introduce-right col-6"></div>
+</div>
+<div class="index-list-item">
+    <div class="index-list-item-title d-flex">
+        <i class="fa-solid fa-bars"></i>
+        <h5>BÁO GIÁ SẮT THÉP XÂY DỰNG</h5>
+    </div>
+    <hr/>
+    <div class="index-video">
+        <div class="index-video-left"></div>
+        <div class="index-video-right"></div>
+    </div>
+</div>
+<div class="index-list-item">
+    <div class="index-list-item-title d-flex">
+        <i class="fa-solid fa-bars"></i>
+        <h5>SẢN PHẨM HOT</h5>
+    </div>
+    <hr/>
+    <div class="index-list-item-list row">
+         @foreach (var product in HotProduts){
+        <div class="col-md-3 col-6">
+            <div class="index-list-item-img">
+                            <a href="/detail/@product.ProductId">
+                    <img src="~/image/index-img/@product.Image" alt=""/>
+                </a>
+            </div>
+            <div class="index-list-item-text">
+                            <a href="/detail/@product.ProductId">
+                    <p>@product.ProductName</p>
+                </a>
+            </div>
+            <div class="index-list-item-rate">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+        </div>
+        }
+        
+    </div>
+</div>
+<div class="index-list-item">
+    <div class="index-list-item-title d-flex">
+        <i class="fa-solid fa-bars"></i>
+        <h5>BÁN CHẠY NHẤT</h5>
+    </div>
+    <hr/>
+    <div class="index-list-item-list row">
+        @foreach (var product in Model.BestSaleProductList){
+        <div class="col-md-3 col-6">
+            <div class="index-list-item-img">
+                            <a href="/detail/@product.ProductId">
+                    <img src="~/image/index-img/@product.Image" alt=""/>
+                </a>
+            </div>
+            <div class="index-list-item-text">
+                            <a href="~/detail/@product.ProductId">
+                    <p>@product.ProductName</p>
+                </a>
+            </div>
+            <div class="index-list-item-rate">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+        </div>
+        }
+      
+    </div>
+</div>
+<div class="index-list-item">
+    <div class="index-list-item-title d-flex">
+        <i class="fa-solid fa-bars"></i>
+        <h5>SẢN PHẨM MỚI</h5>
+    </div>
+    <hr/>
+    <div class="index-list-item-list row">
+                @foreach (var product in NewProduts){
+        <div class="col-md-3 col-6">
+            <div class="index-list-item-img">
+                            <a href="/detail/@product.ProductId">
+                                <img src="~/image/index-img/@product.Image" alt="" />
+                </a>
+            </div>
+            <div class="index-list-item-text">
+                            <a href="/detail/@product.ProductId">
+                    <p>@product.ProductName</p>
+                </a>
+            </div>
+        </div>
+                }
+       
+    </div>
+</div>
+<div class="index-list-item">
+    <div class="index-list-item-header d-flex justify-content-between">
+        <div class="index-list-item-title d-flex">
+            <i class="fa-solid fa-play"></i>
+            <h5>TIN TỨC, KIẾN THỨC THÉP</h5>
+        </div>
+        <div class="readmore-btn">
+            <a href="" class="d-flex">
+                <p>Xem thêm</p>
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        </div>
+    </div>
+    <hr/>
+    <div class="index-list-item-list row"></div>
+</div>
+</div>
+</div>
+<script
+    type="text/javascript"
+    src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script
+    type="text/javascript"
+    src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="~/slick/slick.min.js"></script>
+
+<script>
+      $(document).ready(function () {
+        $(".header-slider").slick({
+          infinite: true,
+          dots: false,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrow: false,
+          prevArrow: null,
+          nextArrow: null,
+          autoplay: true,
+        });
+      });
+    </script>

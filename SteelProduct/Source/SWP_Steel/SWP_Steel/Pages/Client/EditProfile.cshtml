@@ -1,0 +1,61 @@
+﻿@page "/editprofile/{accId}"
+@model SWP_Steel.Pages.Client.EditProfileModel
+@{
+    var accSession = new Customer();
+    if (HttpContext.Session.GetString("AccSession") != null)
+    {
+        accSession = JsonSerializer.Deserialize<Customer>(HttpContext.Session.GetString("AccSession"));
+    }
+    this.Request.RouteValues["accId"] = accSession.CustomerId;
+}
+<div class="content" style="margin: 100px 0;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center my-5">
+            <div class="col-md-6 login-box">
+               
+                <form action="" method="post" class="col-md-12">
+                    <h3>Thông tin cá nhân</h3>
+                    <div id="form-content">
+                        <div class="msg-error" style="text-align:left">
+                            @ViewData["msg"]
+                        </div>
+                        <input type="hidden" value="@accSession.CustomerId" name="accId"/>
+                        <div class="form-group">
+
+                            <label for="username" class="form-text">Tên công ty:</label><br>
+                            <input type="text" asp-for="Customer.CompanyName" class="form-control" value="@ViewData["CompanyName"]"/><br/>
+                            <span class="msg-error" asp-validation-for="Customer.CompanyName"></span><br/>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="form-text">Họ tên:</label><br>
+                            <input type="text" asp-for="Customer.ContactName" class="form-control" value="@ViewData["ContactName"]"/><br/>
+                            <span class="msg-error" asp-validation-for="Customer.ContactName"></span><br/>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="form-text">Chức vụ:</label><br>
+                            <input type="text" asp-for="Customer.ContactTitle" class="form-control" value="@ViewData["ContactTitle"]"/><br/>
+                            <span class="msg-error" asp-validation-for="Customer.ContactTitle"></span><br/>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="form-text">Địa chỉ:</label><br>
+                            <input type="text" asp-for="Customer.Address" class="form-control" value="@ViewData["Address"]"/><br/>
+                            <span class="msg-error" asp-validation-for="Customer.Address"></span><br/>
+                        </div>
+                         <div class="form-group">
+                            <label for="username" class="form-text">Số điện thoại:</label><br>
+                            <input type="text" asp-for="Customer.Phone" class="form-control" value="@ViewData["Phone"]"/><br/>
+                            <span class="msg-error" asp-validation-for="Customer.Phone"></span><br/>
+                        </div>
+
+                        <div class="form-group">
+
+                            <input type="submit" name="login" class="btn btn-success btn-md" value="Edit">
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

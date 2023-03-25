@@ -1,0 +1,77 @@
+﻿@page
+@model SWP_Steel.Pages.Client.Order.PrintOrderToPDFModel
+@{
+}
+@{
+    Layout = null;
+    var orders = (List<OrderDetail>)ViewData["order"];
+    var orderInfo = (Order)ViewData["orderInfo"];
+    var customer = (Customer)ViewData["customer"];
+    decimal total=0;
+    foreach(var o in orders)
+    {
+        total += o.Quantity * o.UnitPrice;
+    }
+   
+}
+<style>
+    #productListAdmin {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #productListAdmin td, #productListAdmin th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #productListAdmin tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #productListAdmin tr:hover {
+            background-color: #ddd;
+        }
+
+        #productListAdmin th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: gray;
+            color: white;
+        }
+</style>
+<h3>OrderId: @orders[0].OrderId</h3>
+<div id="order-table-admin">
+    <table id="productListAdmin">
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+        </tr>
+        @foreach (var order in orders)
+        {
+            <tr>
+                <td>@order.Product.ProductName</td>
+                <td>@order.UnitPrice</td>
+                <td>@order.Quantity</td>
+            </tr>
+            
+        }
+        <tr>
+            <th>Ngày nhận hàng:</th>
+            <td>@orderInfo.RequiredDate</td>
+           
+        </tr>
+        <tr>
+            <th>Địa chỉ nhận hàng</th>
+            <td>@orderInfo.ShipAddress</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại</th>
+            <td>@customer.Phone</td>
+        </tr>
+    </table>
+    <h4>Tổng: $@total</h4>
+</div>

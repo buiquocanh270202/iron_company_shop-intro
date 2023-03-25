@@ -1,0 +1,144 @@
+﻿@page
+@model SWP_Steel.Pages.Admin.News.IndexModel
+
+@{
+	ViewData["Title"] = "Index";
+
+	Layout = "Shared/_LayoutAdmin";
+
+
+}
+<div class="page-wrapper">
+	<div class="page-breadcrumb bg-white">
+		<div class="row align-items-center">
+
+			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+				<h4 class="page-title">Sản phẩm</h4>
+
+			</div>
+
+
+			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+				<div class="d-md-flex">
+					<ol class="breadcrumb ms-auto">
+						<li>
+							<a href="#" class="fw-normal">Tổng quan</a>
+						</li>
+					</ol>
+					<a href="~/admin/News/create"
+					   class="btn btn-danger d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+						Thêm mới
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="row">
+
+						<div class="col-md-8">
+							<p class="box-title">Danh sách sản phẩm</p>
+
+
+						</div>
+						<div class="col-md-4">
+
+							<form method="get" asp-page="./Index">
+								<label>Tìm Kiếm</label>
+								@if (@ViewData["searchNews"] != null)
+								{
+									<input name="searchString" value="@ViewData["searchNews"]" />
+								}
+								else
+								{
+									<input name="searchString" />
+								}
+
+								<button type="submit" class="btn-tim">Tìm</button>
+							</form>
+						</div>
+
+
+					</div>
+
+
+
+					<div class="table-responsive">
+						<table class="table text-nowrap">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Tiêu đề</th>
+									<th>Ngày Tạo </th>
+									<th>Ngày chỉnh sửa</th>
+									<th>Trạng thái</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model.News)
+								{
+									<tr class="item__row" onclick="location.href='./News/Edit?id=@item.NewsId'">
+										<td>
+											@Html.DisplayFor(modelItem => item.NewsId)
+										</td>
+										<td class="col-name">
+											@Html.DisplayFor(modelItem => item.Title)
+										</td>
+
+										<td>
+											@Html.DisplayFor(modelItem => item.CreatedAt)
+										</td>
+
+										<td>
+											@Html.DisplayFor(modelItem => item.ModifyAt)
+										</td>
+
+										<td style="color: @(item.Status == true ? "green" : "red")">
+											@(item.Status == true ? "Đang hiển thị" : "Đã ẩn")
+										</td>
+										<td>
+											<a asp-page="./Delete" asp-route-id="@item.NewsId">Delete</a>
+										</td>
+									</tr>
+								}
+							</tbody>
+
+
+						</table>
+
+						@{
+							if(ViewData["SearchNews"]==null){
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+				generateURl = (int? p) => "/admin/News?p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+							else
+							{
+								var pagingModel = new SWP_Steel.Helpper.PagingModel()
+			{
+				currenPage = Model.currentPage,
+				countPage = Model.countPage,
+					generateURl = (int? p) => "/admin/News?SearchString=" + ViewData["searchNews"].ToString()+ "&p=" + p
+			};
+								<partial name="_PagingXTL" model="@pagingModel" />
+							}
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

@@ -1,0 +1,19 @@
+﻿@page
+@using SWP_Steel.Helpper;
+@model SWP_Steel.Pages.Client.News.NewsSingleModel
+
+@{
+    var news = (News)ViewData["news"];
+    string title = Unsign.utf8Convert1(news.Title).Replace("/", "-");
+    this.Request.RouteValues["title"] = title.Replace(" ", "-");
+    this.Request.RouteValues["newsId"] = news.NewsId;
+}
+
+
+<div class="content my-5">   
+    <div class="container">
+        <h1 class="text-center">@news.Title</h1>
+        @Html.Raw(news.Content)
+    </div>
+</div>
+

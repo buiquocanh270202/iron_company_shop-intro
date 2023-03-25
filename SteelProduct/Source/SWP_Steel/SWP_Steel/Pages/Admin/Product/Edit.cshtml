@@ -1,0 +1,120 @@
+@page
+@model SWP_Steel.Pages.Admin.Product.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "Shared/_LayoutAdmin";
+}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Cập nhật sản phẩm</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <img width="100%" id="preview-product" alt="user" src="~/uploads/@Model.Product.Image">
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Product.ProductId"/>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.ProductName" class="control-label">Sản phẩm:</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Product.ProductName" class="form-control px-2"/>
+                                    <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.Category" class="control-label">Phân loại:</label>
+                                <div class="col-sm-12 border-bottom">
+                                    <select asp-for="Product.CategoryId" class="form-control px-2" asp-items="ViewBag.CategoryId"></select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.QuantityPerUnit" class="control-label">Số lượng mỗi đơn vị:</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Product.QuantityPerUnit" class="form-control px-2"/>
+                                    <span asp-validation-for="Product.QuantityPerUnit" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.UnitPrice" class="control-label">Giá:</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Product.UnitPrice" class="form-control px-2"/>
+                                    <span asp-validation-for="Product.UnitPrice" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.UnitsInStock" class="control-label">Số lượng trong kho:</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Product.UnitsInStock" class="form-control px-2"/>
+                                    <span asp-validation-for="Product.UnitsInStock" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.Discontinued" class="control-label">Ngưng bán</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select class="form-select px-2" asp-for="Product.Discontinued" aria-selected="@(Model.Product.Discontinued ?? false)">
+                                        <option value="true">Có</option>
+                                        <option value="false">Không</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.Description" class="control-label">Mô tả</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input asp-for="Product.Description" class="form-control px-2"/>
+                                    <span asp-validation-for="Product.Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label asp-for="Product.Status" class="control-label">Đang hiển thị</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select class="form-select px-2" asp-for="Product.Status" aria-selected="@Model.Product.Status">
+                                        <option value="true">Có</option>
+                                        <option value="false">Không</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label asp-for="Image" class="control-label">Ảnh</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input type="hidden" asp-for="Product.Image" class="form-control px-2"/>
+                                    <input type="file" asp-for="Image" id="img__upload" class="form-control px-2"/>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12">
+                                    <input type="submit" value="Cập nhật" class="btn btn-primary"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

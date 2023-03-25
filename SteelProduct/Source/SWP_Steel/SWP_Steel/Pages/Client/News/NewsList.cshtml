@@ -1,0 +1,57 @@
+﻿@page
+@model SWP_Steel.Pages.Client.News.NewsListModel
+@{
+}
+@{
+    var news = (List<News>)ViewData["news"];
+}
+<div class="content">
+    <div class="container">
+        <div class="row mt-5">
+            @foreach (var item in news)
+            {
+                if (item.Status == true)
+                {
+
+                    <div class="col-xl-4 col-md-6 mt-3 mb-4">
+                        <div class="blog-item">
+                            <a href="~/client/news/newssingle?newsId=@item.NewsId">
+                                <div class="blog-thumbnail" style="background-image: url('/images/news/@item.Image');">
+                                </div>
+                            </a>
+                            <div class="blog-title mt-2">
+                                <a href="~/client/news/newssingle?newsId=@item.NewsId">
+                                    <h5>@item.Title</h5>
+                                </a>
+                            </div>
+                            <div class="blog-content">
+                                <p>@item.SubContent</p>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+            <div class="page-number d-flex justify-content-center">
+                <div class="page-number-circle rounded-circle">
+                    <i class="fa-solid fa-angles-left"></i>
+                </div>
+                <div class="page-number-circle rounded-circle">
+                    <p>1</p>
+                </div>
+                <div class="page-number-circle rounded-circle">
+                    <p>2</p>
+                </div>
+                <div class="page-number-circle rounded-circle">
+                    <p>3</p>
+                </div>
+                <div class="page-number-circle rounded-circle">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+                <div class="page-number-circle rounded-circle">
+                    <i class="fa-solid fa-angles-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

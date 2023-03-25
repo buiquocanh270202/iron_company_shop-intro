@@ -1,0 +1,115 @@
+@page
+@using System.Globalization
+@model SWP_Steel.Pages.Admin.Product.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "Shared/_LayoutAdmin";
+}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Thông tin sản phẩm</h4>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li>
+                            <a href="#" class="fw-normal">Tổng quan</a>
+                        </li>
+                    </ol>
+                    <a asp-page="./Edit" asp-route-id="@Model.Product.ProductId"
+                       class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                        Cập nhật
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <img width="100%" alt="user" src="~/image/item-img/item1.jpg">
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group mb-4">
+                            <span class="col-md-12 p-0">
+                                Sản phẩm: @Html.DisplayFor(model => model.Product.ProductName)
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-md-12 p-0">
+                                Số lượng mỗi đơn vị: @Html.DisplayFor(model => model.Product.QuantityPerUnit)/bó
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-md-12 p-0">
+                                Giá: @decimal.Parse(Model.Product.UnitPrice.ToString()!, NumberStyles.Currency) vnđ
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-md-12 p-0">
+                                Số lượng: @Html.DisplayFor(model => model.Product.UnitsInStock) đơn vị
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-md-12 p-0">
+                                Đang được đặt hàng: @(Model.Product.UnitsOnOrder > 0 ? Model.Product.UnitsOnOrder : 0)
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Tái đặt hàng: @(Model.Product.ReorderLevel > 0 ? Model.Product.ReorderLevel : 0)
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Ngưng bán hàng: @(Model.Product.Discontinued != true ? "Không" : "Có")
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Mô tả: @Html.DisplayFor(model => model.Product.Description)
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Tình trạng: @(Model.Product.Status != true ? "Không hiển thị" : "Đang hiển thị")
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Phân loại: @Html.DisplayFor(model => model.Product.Category.CategoryName)
+                            </span>
+                        </div>
+                    </div>
+                    <a onclick="return confirm('Are you sure you want to delete?')"
+                       class="btn btn-danger d-md-block pull-right ms-3 waves-effect waves-light text-white col-2 mb-3">
+                        Xóa sản phẩm
+                    </a>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

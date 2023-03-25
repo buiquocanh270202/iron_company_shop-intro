@@ -1,0 +1,170 @@
+@page
+@using System.Globalization
+@model SWP_Steel.Pages.Admin.Order.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "Shared/_LayoutAdmin";
+    var orderDetails = (List<OrderDetail>)ViewData["orders"]!;
+}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Thông tin đơn hàng</h4>
+                </div>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li>
+                            <a href="#" class="fw-normal">Tổng quan</a>
+                        </li>
+                    </ol>
+                    <a asp-page="./Edit" asp-route-id="@Model.Order.OrderId"
+                       class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                        Cập nhật
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Họ tên: @Html.DisplayFor(
+                                         model => model.Order.Customer!.ContactTitle). @Html.DisplayFor(model => model.Order.Customer!.ContactName)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Số điện thoại: @Html.DisplayFor(model => model.Order.Customer!.Phone)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Email: @Html.DisplayFor(model => model.Order.Customer!.Email)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Ngày đặt hàng: @(DateTime.Parse(Model.Order.OrderDate.ToString()!).ToString("dd/MM/yyyy"))
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Địa chỉ giao hàng: @Html.DisplayFor(model => model.Order.ShipAddress)
+                        </span>
+                    </div>
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Ngày yêu cầu: @(DateTime.Parse(Model.Order.RequiredDate.ToString()!).ToString("dd/MM/yyyy"))
+                        </span>
+                    </div>
+                    @if (Model.Order.ShippedDate != null)
+                    {
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Ngày giao hàng: @(DateTime.Parse(Model.Order.ShippedDate.ToString()!).ToString("dd/MM/yyyy"))
+                            </span>
+                        </div>
+                    }
+
+                    @if (Model.Order.EmployeeId != null)
+                    {
+                        <div class="form-group mb-4">
+                            <span class="col-sm-12">
+                                Nhân viên phụ trách: @(Model.Order.Employee!.FullName)
+                            </span>
+                        </div>
+                    }
+                    <div class="form-group mb-4">
+                        <span class="col-sm-12">
+                            Tình trạng đơn hàng: @(Model.Order.ShippedDate == null && Model.Order.EmployeeId != null ? "Đang giao hàng..." :
+                                                        Model.Order.ShippedDate == null && Model.Order.EmployeeId == null ? "Đang xử lý..." : "Giao hàng thành công!")
+                        </span>
+                    </div>
+                    @if (Model.Order.ShippedDate == null && Model.Order.EmployeeId != null)
+                    {
+                        <form method="post">
+                            <input type="hidden" asp-for="Order.OrderId"/>
+                            <input type="hidden" asp-for="Order.ShippedDate" value="@DateTime.Now"/>
+                            <input type="submit" value="Xác nhận giao hàng" class="btn btn-primary"/>
+                        </form>
+                    }
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="white-box">
+                            <h3 class="box-title">Danh sách sản phẩm</h3>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th>Giảm giá</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var item in orderDetails)
+                                    {
+                                        <tr class="item__row" onclick="location.href='../Order/Details?id=@item.OrderId'">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProductId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Product.ProductName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UnitPrice)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+                                            <td>
+                                                @(string.Format(new CultureInfo("vi-VN"), "{0:c}", item.UnitPrice * item.Quantity))
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Discount)
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <span class="fs-4 font-bold">Tổng tiền: @(string.Format(new CultureInfo("vi-VN"), "{0:c}", Model.Order.Freight))</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* <a onclick="return confirm('Are you sure you want to delete?')" *@
+                    @*    class="btn btn-danger d-md-block pull-right ms-3 waves-effect waves-light text-white col-2 mb-3"> *@
+                    @*     Xóa sản phẩm *@
+                    @* </a> *@
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

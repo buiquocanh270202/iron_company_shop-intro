@@ -1,0 +1,66 @@
+@page
+@model SWP_Steel.Pages.Admin.Category.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "Shared/_LayoutAdmin";
+}
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Phân loại</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li>
+                            <a href="#" class="fw-normal">Tổng quan</a>
+                        </li>
+                    </ol>
+                    <a href="~/admin/category/create"
+                       class="btn btn-danger  d-none d-md-block pull-right ms-3 hidden-xs hidden-sm waves-effect waves-light text-white">
+                        Thêm mới
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title">Các loại sản phẩm</h3>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Phân loại</th>
+                                <th>Mô tả</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var item in Model.Category)
+                            {
+                                <tr class="item__row" onclick="location.href='./Category/Details?id=@item.CategoryId'">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryName)
+                                    </td>
+                                    <td class="description">
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td style="color: @(item.Status == true ? "green" : "red")">
+                                        @(item.Status == true ? "Đang hiển thị" : "Đã ẩn")
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

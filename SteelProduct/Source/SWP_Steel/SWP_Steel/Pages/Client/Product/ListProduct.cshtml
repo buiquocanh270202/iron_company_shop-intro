@@ -1,0 +1,130 @@
+﻿@page "/listproduct/{catId}/{searchId}"
+@model SWP_Steel.Pages.Client.Product.ListProductModel
+
+@{
+    Swp391Context dBContext = new Swp391Context();
+    List<SWP_Steel.Models.Category> categories = (List<SWP_Steel.Models.Category>)ViewData["catergories"];
+    int catId = Int32.Parse(ViewData["cat"].ToString());
+    var cat = dBContext.Categories.Where(c => c.CategoryId == catId).FirstOrDefault();
+    List<Product> products = (List<Product>)ViewData["products"];
+     
+}
+
+
+<div class="content">
+    <div class="container">
+        <div class="content-header d-flex justify-content-between mt-2">
+            <div class="content-breadcrump me-3">
+                <p><a href="~/index" class="text-decoration-none text-dark">TRANG CHỦ</a> / THÉP XÂY DỰNG / <strong>@cat.CategoryName</strong></p>
+            </div>
+            <div class="content-sort-by d-flex">
+                <form method="post" asp-page-handler="Search">
+                    <select class="form-select" name="Search" id="" onchange="this.form.submit()">
+                        <option value="1">Thứ tự mặc định</option>
+                        @*  <option value="5">Thứ tự theo số lượng bán</option>    *@
+                        <option value="2">Mới nhất</option>
+                        <option value="3">Thứ tự theo giá: thấp đến cao</option>
+                        <option value="4">Thứ tự theo giá: cao đến thấp</option>
+                    </select>
+                    @{
+                        string searchId = HttpContext.Session.GetString("Search");
+                        this.Request.RouteValues["searchId"] = searchId;
+                    }
+                </form>
+            </div>
+        </div>
+        <div class="content-detail row">
+            <div class="fixed-menu col-md-2 my-3">
+                <div class="fixed-menu-title">
+                    <h5>DANH MỤC SẢN PHẨM</h5>
+                </div>
+                <div class="fixed-menu-content">
+                    @foreach (var item in categories)
+                    {
+                        this.Request.RouteValues["catId"] = cat.CategoryId;
+                        <a href="/listproduct/@item.CategoryId/1">@item.CategoryName</a>
+                        <hr />
+                    }
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="content-detail-right col-md-9">
+                <p>
+                    @cat.Description
+                </p>
+
+
+                <div class="content-list-item row">
+                    @foreach (var p in products)
+                    {
+                        <div class="col-xl-3 col-md-4 col-6">
+                            <div class="content-list-item-img">
+                                <a href="/detail/@p.ProductId">
+                                    
+                                    <img src="~/image/index-img/@p.Image" alt="" />
+                                </a>
+                            </div>
+                            <div class="content-list-item-text">
+                                <a href="/detail/@p.ProductId">
+                                    <p>@p.ProductName</p>
+                                </a>
+                            </div>
+                            <div class="content-list-item-rate">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="content-list-item-price">
+                                <p>@String.Format("{0:#,##0}", @p.UnitPrice) VNĐ </p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div id="paging">
+                <div class="pagination">
+
+                    @if (Model.CurPage - 4 > 1)
+                    {
+                        <a href="/client/product/listproduct?page=1">First</a>
+                    }
+
+                    @if (Model.CurPage != 1)
+                    {
+                        <a href="/client/product/listproduct?page=@(Model.CurPage - 1)">&laquo;</a>
+
+                    }
+
+                    @for (var i = Model.CurPage - 4; i < Model.CurPage; i++)
+                    {
+                        if (i > 0)
+                        {
+                            <a href="/client/product/listproduct?page=@i">@i</a>
+                        }
+                    }
+                    <a href="/client/product/listproduct?page=@Model.CurPage" class="active">@Model.CurPage</a>
+                    @for (var i = Model.CurPage + 1; i < Model.CurPage + 4; i++)
+                    {
+                        if (i <= Model.TotalPage)
+                        {
+                            <a href="/client/product/listproduct?page=@i">@i</a>
+                        }
+                    }
+
+                    @if (Model.CurPage < Model.TotalPage)
+                    {
+                        <a href="/client/product/listproduct?page=@(Model.CurPage + 1)">&raquo;</a>
+                    }
+
+                    @if (Model.CurPage + 8 < Model.TotalPage)
+                    {
+                        <a href="/client/product/listproduct?page=@Model.TotalPage">Last</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

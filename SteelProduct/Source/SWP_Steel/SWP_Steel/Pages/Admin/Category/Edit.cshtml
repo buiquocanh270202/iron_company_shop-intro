@@ -1,0 +1,63 @@
+@page
+@model SWP_Steel.Pages.Admin.Category.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "Shared/_LayoutAdmin";
+}
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <div class="title-box">
+                    <a class="btn" href="javascript:history.back()">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h4 class="page-title">Cập nhật loại sản phẩm</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="container-fluid">
+        <!-- Column -->
+        <!-- Column -->
+        <div class="col-lg-8 col-xlg-9 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Category.CategoryId"/>
+                        <div class="form-group mb-4">
+                            <label asp-for="Category.CategoryName" class="control-label">Loại sản phẩm</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input asp-for="Category.CategoryName" class="form-control px-2"/>
+                                <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label asp-for="Category.Description" class="control-label">Mô tả</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <input asp-for="Category.Description" class="form-control px-2"/>
+                                <span asp-validation-for="Category.Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label asp-for="Category.Status" class="control-label">Đang hiển thị</label>
+                            <div class="col-md-12 border-bottom p-0">
+                                <select class="form-select px-2" asp-for="Category.Status">
+                                    <option value="true">Có</option>
+                                    <option value="false">Không</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Cập nhật" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+</div>

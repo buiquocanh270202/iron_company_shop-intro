@@ -1,0 +1,31 @@
+﻿.description {
+    max-width: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.logo-text {
+    font-size: 24px;
+    color: #282323;
+    font-weight: bold;
+}
+
+.item__row:hover {
+    cursor: pointer;
+    background-color: #f3f0f0;
+}
+
+tr>th, tr>td {
+    text-align: center;
+}
+
+.col-name, .col-email {
+    text-align: start;
+}
+
+.title-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

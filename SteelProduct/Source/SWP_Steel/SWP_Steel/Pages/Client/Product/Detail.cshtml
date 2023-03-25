@@ -1,0 +1,87 @@
+﻿@page "/detail/{pId}"
+@model SWP_Steel.Pages.Client.Product.DetailModel
+@{
+    Product product = (Product)ViewData["product"];
+    this.Request.RouteValues["pId"] = product.ProductId;
+}
+<div class="content">
+    <div class="detail-content-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <img class="item-thumbnail" src="~/image/index-img/@product.Image" alt="">
+                </div>
+                <div class="col-5">
+                    <div class="detail-breadcrump">
+                        <p>TRANG CHỦ / THÉP XÂY DỰNG / THÉP GÂN</p>
+                    </div>
+                    <div class="detail-title">
+                        <h5>@product.ProductName</h5>
+                    </div>
+                    <div class="detail-review d-flex">
+                        <div class="detail-rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                       @* <div class="detail-count-review">
+                            <span>(1 đánh giá của khách hàng)</span>
+                        </div>*@
+                    </div>
+                    <div class="detail-item-detail">
+                        <div class="detail-item-price">
+                            <span>Giá :@String.Format("{0:#,##0}", @product.UnitPrice) VNĐ </span>
+                        </div>
+                        <ul>
+                            <li>@product.Description</li>
+                           @* <li>Đường kính : phổ biến từ Φ10, Φ12, Φ14, Φ16, Φ18, Φ20,…Φ51</li>
+                            <li>Chiều dài: tiêu chuẩn 11,7m/cây</li>
+                            <li>Tiêu chuẩn TCVN 1651-2: 2008: CB300-V, CB400-V, CB500-V</li>
+                            <li>Tiêu chuẩn JIS G3112 – 2010:SD 295A, SD 390, SD 490</li>
+                            <li>ASTM A 615M -09 : G40, G60</li>
+                            <li>Xuất xứ: Thép Vina Kyoei – Việt Nam</li>*@
+                        </ul>
+                       @* <p>VUI LÒNG LIÊN HỆ 0915.783.788 ĐỂ ĐƯỢC BÁO GIÁ MỚI NHẤT</p>*@
+                    </div>
+                    <div class="detail-item-form-order">
+                        
+                            <label for="size">Kích thước : @product.QuantityPerUnit</label>
+                      
+                            @*<select name="size" id="">
+                                <option value="">Ø 10mm</option>
+                                <option value="">Ø 12mm</option>
+                                <option value="">Ø 14mm</option>
+                                <option value="">Ø 16mm</option>
+                                <option value="">Ø 18mm</option>
+                                <option value="">Ø 20mm</option>
+                            </select>*@
+                            <br>
+                           @* <label for="type">Mác thép</label>
+                            <select name="type" id="">
+                                <option value="">CB300</option>
+                                <option value="">CB400</option>
+                            </select>*@
+                        
+                    </div>
+                    <div id="product-detail-buttons">
+                            <div id="product-detail-button">
+
+                                <div id="product-detail-buttons">
+                                    <div id="product-detail-button">
+                                    <div class="input-number">
+                                        <a asp-page="/client/order/cart" asp-page-handler="buynow" asp-route-id="@product.ProductId"><button class="py-2 px-4">MUA NGAY</button></a>
+
+                                    </div>
+                                 
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

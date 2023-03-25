@@ -1,0 +1,93 @@
+﻿@page
+@model SWP_Steel.Pages.Admin.News.DeleteModel
+
+@{
+	ViewData["Title"] = "Delete";
+	Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-wrapper">
+	<!-- ============================================================== -->
+	<!-- Bread crumb and right sidebar toggle -->
+	<!-- ============================================================== -->
+	<div class="page-breadcrumb bg-white">
+		<div class="row align-items-center">
+			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+				<h4 class="page-title">Thông tin sản phẩm</h4>
+			</div>
+			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+				<div class="d-md-flex">
+					<ol class="breadcrumb ms-auto">
+						<li>
+							<a href="#" class="fw-normal">Tổng quan</a>
+						</li>
+					</ol>
+					<form method="post">
+						<input type="hidden" asp-for="News.NewsId" />
+						<input type="submit" value="Delete" class="btn btn-danger" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Column -->
+			<div class="col-lg-4 col-xlg-3 col-md-12">
+				<div class="white-box">
+					<div class="user-bg">
+						<img width="100%" alt="user" src="~/images/news/@(Model.News.Image)">
+					</div>
+				</div>
+			</div>
+			<!-- Column -->
+			<!-- Column -->
+			<div class="col-lg-8 col-xlg-9 col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="form-group mb-4">
+							<span class="col-md-12 p-0">
+								Tiêu đề: @Html.DisplayFor(model => model.News.Title)
+							</span>
+						</div>
+						<div class="form-group mb-4">
+							<span class="col-md-12 p-0">
+								Nội dung chính: @Html.DisplayFor(model => model.News.SubContent)
+							</span>
+						</div>
+						<div class="form-group mb-4">
+							<span class="col-md-12 p-0">
+								Nội dung: @Html.Raw(Model.News.Content)
+							</span>
+						</div>
+
+
+						<div class="form-group mb-4">
+							<span class="col-sm-12">
+								Ngày chỉnh sửa: @Html.DisplayFor(model => model.News.CreatedAt)
+							</span>
+						</div>
+
+						<div class="form-group mb-4">
+							<span class="col-sm-12">
+								Ngày Tạo : @Html.DisplayFor(model => model.News.ModifyAt)
+							</span>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<!-- Column -->
+		</div>
+	</div>
+
+
+</div>
+
+
+
+
+
+</div>
